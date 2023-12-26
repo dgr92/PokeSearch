@@ -3,12 +3,18 @@ import { createContext, useState } from 'react';
 export const PokemonContext = createContext();
 
 export const PokemonProviderComponent = ({ children }) => {
-	const [pokemonActualGen, setPokemonActualGen] = useState([]);
 	const [numOfGenerations, setNumOfGenerations] = useState([]);
-
-
+	const [pokemonActualGen, setPokemonActualGen] = useState([]);
+	
 	return (
-		<PokemonContext.Provider value={{pokemonActualGen, setPokemonActualGen, numOfGenerations, setNumOfGenerations}}>
+		<PokemonContext.Provider
+			value={{
+				numOfGenerations,
+				setNumOfGenerations,
+				pokemonActualGen,
+				setPokemonActualGen,
+			}}
+		>
 			{children}
 		</PokemonContext.Provider>
 	);

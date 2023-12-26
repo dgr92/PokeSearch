@@ -1,23 +1,43 @@
+import { useContext, useState, useEffect } from 'react';
+import { PokemonContext } from '../context/PokemonContext';
+import { getPokemonInfo } from '../services/helpers';
+
 import { PokemonCard } from './PokemonCard';
 
-// Listado de todos los pokémon de una generación 
-export const PokemonList = ({ genInfo }) => {
-    genInfo.sort((a, b) => {
-        const numA = parseInt(a.url.split('/').filter(Boolean).pop(), 10);
-        const numB = parseInt(b.url.split('/').filter(Boolean).pop(), 10);
-        return numA - numB;
-    })
+// Listado de todos los pokémon de una generación
+export const PokemonList = () => {
+	const { pokemonActualGen } = useContext(PokemonContext);
+	const [pokemonDataList, setPokemonDataList] = useState([]);
+
+	useEffect(() => {
+		const fetchPokemonData = async () => {
+			const updatedPokemonDataList = await Promise.all(
+				pokemonActualGen.map(async (pokemon) => {
+					const pokemonData = await getPokemonInfo(pokemon);
+					return pokemonData;
+				})
+			);
+			setPokemonDataList(updatedPokemonDataList);
+		};
+		fetchPokemonData();
+	}, [pokemonActualGen]);
+
+	pokemonDataList.sort((a, b) => {
+		const numA = a.pokemon.number;
+		const numB = b.pokemon.number;
+		return numA - numB;
+	});
 
 	return (
 		<ul className='lista-pokemon'>
-			{genInfo.map((pokemon) => {
-                return (
-                    <li key={pokemon.name}>
-						<PokemonCard pokemon={pokemon} />
+			{pokemonDataList.map((pokemonData) => {
+				console.log(pokemonData)
+				return (
+					<li key={pokemonData.pokemon.name}>
+						<PokemonCard pokemonData={pokemonData} />
 					</li>
 				);
 			})}
 		</ul>
 	);
 };
-

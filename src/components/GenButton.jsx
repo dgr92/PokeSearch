@@ -8,6 +8,7 @@ export const GenButton = ({ gen, genNum }) => {
 
 	// Fetch que trae todos los pokémon de esa generación
 	const handleSearchGenInfo = async () => {
+		setPokemonActualGen([]);
 		try {
 			const genData = await fetch(gen.url)
 				.then((response) => response.json())
@@ -15,8 +16,8 @@ export const GenButton = ({ gen, genNum }) => {
 					return data;
 				});
 			let actualPokemons = genData.pokemon_species;
-
 			setPokemonActualGen(actualPokemons);
+
 			setNumOfGenerations([]);
 		} catch (e) {
 			setError(e.message);

@@ -7,7 +7,7 @@ import { PokemonList } from './PokemonList';
 
 export const PokeApp = () => {
 	const [error, setError] = useState('');
-	const { pokemonActualGen, setPokemonActualGen, numOfGenerations, setNumOfGenerations} = useContext(PokemonContext);
+	const { setPokemonActualGen, numOfGenerations, setNumOfGenerations } = useContext(PokemonContext);
 
 	// Fetch a la API al pulsar el botón que despliega el listado de generaciones pokémont
 	const handleGens = async () => {
@@ -33,13 +33,15 @@ export const PokeApp = () => {
 	const handleHomeButton = () => {
 		setPokemonActualGen([]);
 		setNumOfGenerations([]);
-	}
+	};
 
 	return (
 		<div>
 			<header>
 				<button className='home-button'>
-					<Link to='/' onClick={handleHomeButton} >Home</Link>
+					<Link to='/' onClick={handleHomeButton}>
+						Home
+					</Link>
 				</button>
 
 				<button onClick={handleGens}>Search for Gen</button>
@@ -53,7 +55,7 @@ export const PokeApp = () => {
 			<hr />
 
 			<main>
-				<PokemonList genInfo={pokemonActualGen} />
+				<PokemonList />
 			</main>
 		</div>
 	);
