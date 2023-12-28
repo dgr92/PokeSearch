@@ -7,7 +7,7 @@ export const getPokemonInfo = async (pokemon) => {
                 return infoPokemon;
             });
 
-        const spriteAndTypeData = await fetch(infoPokemon.varieties[0].pokemon.url)
+        const spriteTypeStatsData = await fetch(infoPokemon.varieties[0].pokemon.url)
             .then((response) => response.json())
             .then((spriteAndType) => {
                 return spriteAndType;
@@ -20,20 +20,21 @@ export const getPokemonInfo = async (pokemon) => {
             })
 
         const nameAndNumber = getNameAndNumber(infoPokemon);
-        const sprites = getSprites(spriteAndTypeData);
-        const types = getTypes(spriteAndTypeData);
+        const sprites = getSprites(spriteTypeStatsData);
+        const types = getTypes(spriteTypeStatsData);
         const pokedexDescription = getPokemonDescription(infoPokemon);
         const pokemonDescription = getPokedexDescription(infoPokemon);
+        const pokemonStats = getPokemonStats(spriteTypeStatsData)
+        const evolution = getEvolution(evolutionData, infoPokemon);
         const preEvolution = getPreEvolution(infoPokemon);
-        const evolution = getEvolution(evolutionData);
         const category = getCategory(infoPokemon);
-
         const pokemonData = {
             pokemon: nameAndNumber,
             sprites: sprites,
             types: types,
             description: pokemonDescription,
             pokedex_description: pokedexDescription,
+            stats: pokemonStats,
             pre_evolution: preEvolution,
             evolution: evolution,
             category: category,
@@ -55,9 +56,9 @@ const getNameAndNumber = (infoPokemon) => {
 }
 
 // Get sprites
-const getSprites = (spriteAndTypeData) => {
-    const normalSprite = spriteAndTypeData.sprites.other["official-artwork"].front_default;
-    const shinySprite = spriteAndTypeData.sprites.other["official-artwork"].front_shiny;
+const getSprites = (spriteTypeStatsData) => {
+    const normalSprite = spriteTypeStatsData.sprites.other["official-artwork"].front_default;
+    const shinySprite = spriteTypeStatsData.sprites.other["official-artwork"].front_shiny;
 
     return {
         normalSprite: normalSprite,
@@ -66,9 +67,9 @@ const getSprites = (spriteAndTypeData) => {
 }
 
 // Get types
-const getTypes = (spriteAndTypeData) => {
-    const type1 = spriteAndTypeData.types[0].type.name;
-    const type2 = spriteAndTypeData.types[1]?.type.name;
+const getTypes = (spriteTypeStatsData) => {
+    const type1 = spriteTypeStatsData.types[0].type.name;
+    const type2 = spriteTypeStatsData.types[1]?.type.name;
     return {
         type1: type1,
         type2: type2,
@@ -84,6 +85,19 @@ const getPokemonDescription = (infoPokemon) => {
             return infoPokemon.genera[i].genus
         }
     }
+}
+
+// Get pokemon stats
+const getPokemonStats = (spriteTypeStatsData) => {
+    const pokemonStats = {
+        Hp: spriteTypeStatsData.stats[0].base_stat,
+        At: spriteTypeStatsData.stats[1].base_stat,
+        Def: spriteTypeStatsData.stats[2].base_stat,
+        AtEsp: spriteTypeStatsData.stats[3].base_stat,
+        DefEsp: spriteTypeStatsData.stats[4].base_stat,
+        Vel: spriteTypeStatsData.stats[5].base_stat,
+    }
+    return pokemonStats;
 }
 
 // Get pokedex description
@@ -108,8 +122,14 @@ const getPreEvolution = (infoPokemon) => {
 }
 
 // Get Evolution
-const getEvolution = (evolutionData) => {
-    return evolutionData.chain.evolves_to[0]?.evolves_to[0]?.species.name;
+const getEvolution = (evolutionData, infoPokemon) => {
+    if (evolutionData.chain.species.name === infoPokemon.name) {
+        return evolutionData.chain.evolves_to[0]?.species.name;
+    }
+    if (evolutionData.chain.evolves_to[0]?.species.name === infoPokemon.name) {
+        return evolutionData.chain.evolves_to[0]?.evolves_to[0]?.species.name;
+    }
+
 }
 
 // Get legendary or mythical

@@ -1,5 +1,7 @@
 import { GenButton } from './GenButton';
 
+import '../styles/genList.css'
+
 // Desplegable con la lista de generaciones
 export const GenList = ({ numOfGenerations }) => {
 	let genNum = 0;

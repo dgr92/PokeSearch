@@ -4,6 +4,8 @@ import { getPokemonInfo } from '../services/helpers';
 
 import { PokemonCard } from './PokemonCard';
 
+import '../styles/pokemonList.css'
+
 // Listado de todos los pokémon de una generación
 export const PokemonList = () => {
 	const { pokemonActualGen } = useContext(PokemonContext);
@@ -29,9 +31,8 @@ export const PokemonList = () => {
 	});
 
 	return (
-		<ul className='lista-pokemon'>
+		<ul className='pokemon-list'>
 			{pokemonDataList.map((pokemonData) => {
-				console.log(pokemonData)
 				return (
 					<li key={pokemonData.pokemon.name}>
 						<PokemonCard pokemonData={pokemonData} />
