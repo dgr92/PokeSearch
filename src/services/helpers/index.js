@@ -90,12 +90,12 @@ const getPokemonDescription = (infoPokemon) => {
 // Get pokemon stats
 const getPokemonStats = (spriteTypeStatsData) => {
     const pokemonStats = {
-        Hp: spriteTypeStatsData.stats[0].base_stat,
-        At: spriteTypeStatsData.stats[1].base_stat,
-        Def: spriteTypeStatsData.stats[2].base_stat,
-        AtEsp: spriteTypeStatsData.stats[3].base_stat,
-        DefEsp: spriteTypeStatsData.stats[4].base_stat,
-        Vel: spriteTypeStatsData.stats[5].base_stat,
+        hp: spriteTypeStatsData.stats[0].base_stat,
+        at: spriteTypeStatsData.stats[1].base_stat,
+        def: spriteTypeStatsData.stats[2].base_stat,
+        atEsp: spriteTypeStatsData.stats[3].base_stat,
+        defEsp: spriteTypeStatsData.stats[4].base_stat,
+        vel: spriteTypeStatsData.stats[5].base_stat,
     }
     return pokemonStats;
 }
@@ -123,6 +123,7 @@ const getPreEvolution = (infoPokemon) => {
 
 // Get Evolution
 const getEvolution = (evolutionData, infoPokemon) => {
+    console.log(infoPokemon.name, evolutionData)
     if (evolutionData.chain.species.name === infoPokemon.name) {
         return evolutionData.chain.evolves_to[0]?.species.name;
     }

@@ -23,14 +23,9 @@ export const PokemonCard = ({ pokemonData }) => {
 
 	const handleFlip = () => {
 		setFlipped((flipped) => !flipped);
-		console.log(flipped);
-		if (!flipped) {
-			setTimeout(() => {
-				setFlipped(false);
-			}, 15000);
-		}
 	};
 
+	console.log(pokemonData); 																	//TODO: borrar
 	return (
 		<li className='pokemon-card'>
 			<div className='front-card' id={flipped === true ? 'hidden' : ''} onClick={handleFlip}>
@@ -67,10 +62,63 @@ export const PokemonCard = ({ pokemonData }) => {
 
 				<div className='evolutions'>
 					{pokemonData.pre_evolution ? (
-						<h3>Pre Ev: {pokemonData.pre_evolution.charAt(0).toUpperCase() + pokemonData.pre_evolution.slice(1)}</h3>
+						<h3>Pre Evolución: {pokemonData.pre_evolution.charAt(0).toUpperCase() + pokemonData.pre_evolution.slice(1)}</h3>
 					) : null}
-					{pokemonData.evolution ? <h3>Ev: {pokemonData.evolution.charAt(0).toUpperCase() + pokemonData.evolution.slice(1)}</h3> : null}
+					{pokemonData.evolution ? (
+						<h3>Evolución: {pokemonData.evolution.charAt(0).toUpperCase() + pokemonData.evolution.slice(1)}</h3>
+					) : null}
 				</div>
+
+				<dl className='stats'>
+					<div>
+						<dt>Hp:</dt>
+						<dd>
+							<div style={{ width: `${(pokemonData.stats.hp / 255) * 100}%` }}>
+								<strong>{pokemonData.stats.hp}</strong>
+							</div>
+						</dd>
+					</div>
+					<div>
+						<dt>At:</dt>
+						<dd>
+							<div style={{ width: `${(pokemonData.stats.at / 255) * 100}%` }}>
+								<strong>{pokemonData.stats.at}</strong>
+							</div>
+						</dd>
+					</div>
+					<div>
+						<dt>Def:</dt>
+						<dd>
+							<div style={{ width: `${(pokemonData.stats.def / 255) * 100}%` }}>
+								<strong>{pokemonData.stats.def}</strong>
+							</div>
+						</dd>
+					</div>
+					<div>
+						<dt>At Esp:</dt>
+						<dd>
+							<div style={{ width: `${(pokemonData.stats.atEsp / 255) * 100}%` }}>
+								<strong>{pokemonData.stats.atEsp}</strong>
+							</div>
+						</dd>
+					</div>
+					<div>
+						<dt>Def Esp:</dt>
+						<dd>
+							<div style={{ width: `${(pokemonData.stats.defEsp / 255) * 100}%` }}>
+								<strong>{pokemonData.stats.defEsp}</strong>
+							</div>
+						</dd>
+					</div>
+					<div>
+						<dt>Vel:</dt>
+						<dd>
+							<div style={{ width: `${(pokemonData.stats.vel / 255) * 100}%` }}>
+								<strong>{pokemonData.stats.vel}</strong>
+							</div>
+						</dd>
+					</div>
+				</dl>
 			</div>
 		</li>
 	);
