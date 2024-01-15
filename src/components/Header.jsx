@@ -2,15 +2,15 @@ import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { PokemonContext } from '../context/PokemonContext';
-import { GenList } from './GenList';
-import { PokemonList } from './PokemonList';
+import { SearchForm } from './SearchForm';
 
-export const PokeApp = () => {
+export const Header = ({ setHideGens }) => {
 	const [error, setError] = useState('');
-	const { setPokemonActualGen, numOfGenerations, setNumOfGenerations } = useContext(PokemonContext);
+	const { setPokemonActualGen, setNumOfGenerations, setsearchResults } = useContext(PokemonContext);
 
 	// Fetch a la API al pulsar el botón que despliega el listado de generaciones pokémont
 	const handleGens = async () => {
+		setHideGens(false);
 		try {
 			const numOfGens = await fetch('https://pokeapi.co/api/v2/generation/')
 				.then((responseGens) => responseGens.json())
@@ -24,39 +24,26 @@ export const PokeApp = () => {
 		}
 	};
 
-	// Cerrar desplegable de generaciones
-	const closeGenMenu = () => {
-		setNumOfGenerations([]);
-	};
-
 	// Eliminamos los pokemon del contexto si volvemos a la pagina principal
 	const handleHomeButton = () => {
 		setPokemonActualGen([]);
 		setNumOfGenerations([]);
+		setsearchResults([])
 	};
 
 	return (
-		<div>
-			<header>
-				<button className='home-button'>
-					<Link to='/' onClick={handleHomeButton}>
-						Home
-					</Link>
-				</button>
-
-				<button onClick={handleGens}>Search for Gen</button>
-
-				<GenList numOfGenerations={numOfGenerations} />
-				{numOfGenerations.length ? (
-					<button onClick={closeGenMenu}>X</button> //TODO: PONER TRANSPARENTE, GIGANTE Y POR DEBAJO
-				) : null}
-			</header>
-
-			<hr />
-
-			<main>
-				<PokemonList />
-			</main>
-		</div>
+		<header>
+			<div>
+				<div className='header-buttons'>
+					<button className='home-button'>
+						<Link to='/' onClick={handleHomeButton}>
+							Inicio
+						</Link>
+					</button>
+					<button onClick={handleGens}>Buscar Generación</button>
+				</div>
+				{<SearchForm />}
+			</div>
+		</header>
 	);
 };

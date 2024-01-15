@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { PokemonContext } from '../context/PokemonContext';
 import { getPokemonInfo } from '../services/helpers';
 
@@ -8,8 +8,7 @@ import '../styles/pokemonList.css'
 
 // Listado de todos los pokémon de una generación
 export const PokemonList = () => {
-	const { pokemonActualGen } = useContext(PokemonContext);
-	const [pokemonDataList, setPokemonDataList] = useState([]);
+	const { pokemonActualGen, pokemonDataList, setPokemonDataList, searchResults } = useContext(PokemonContext);
 
 	useEffect(() => {
 		const fetchPokemonData = async () => {
@@ -30,15 +29,28 @@ export const PokemonList = () => {
 		return numA - numB;
 	});
 
+
+	
 	return (
 		<ul className='pokemon-list'>
-			{pokemonDataList.map((pokemonData) => {
-				return (
-					<li key={pokemonData.pokemon.name}>
-						<PokemonCard pokemonData={pokemonData} />
-					</li>
-				);
-			})}
+			{searchResults.length 
+			? 
+				searchResults.map((pokemonData) => {
+					return (
+						<li key={pokemonData.pokemon.name}>
+							<PokemonCard pokemonData={pokemonData} />
+						</li>
+					);
+				})
+			:
+				pokemonDataList.map((pokemonData) => {
+					return (
+						<li key={pokemonData.pokemon.name}>
+							<PokemonCard pokemonData={pokemonData} />
+						</li>
+					);
+				})
+		}
 		</ul>
 	);
 };

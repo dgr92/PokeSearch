@@ -1,8 +1,13 @@
+import { Link } from 'react-router-dom';
+
 export const Footer = () => {
 	return (
 		<footer>
-			<h1>Desarrollado con</h1>
-			<img src='src/resources/pokeapi-logo.svg' />
+			<div>
+				<p>Desarrollado con</p>
+				<img src='src/resources/pokeapi-logo.svg' alt="PokeAPI logo"/>
+			</div>
+			<Link to='/changelog'>v1.0</Link>
 		</footer>
 	);
 };

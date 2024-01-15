@@ -1,6 +1,6 @@
 .pokemon-card {
 	border: 1px solid black;
-    background-color: #414141;
+	background-color: #414141;
 	border-radius: 20px;
 	display: flex;
 	flex-wrap: wrap;
@@ -8,13 +8,30 @@
 	align-items: center;
 	width: 350px;
 	height: 500px;
-    -webkit-box-shadow: 10px 10px 29px -5px rgba(0, 0, 0, 0.75);
-	-moz-box-shadow: 10px 10px 29px -5px rgba(0, 0, 0, 0.75);
 	box-shadow: 10px 10px 29px -5px rgba(0, 0, 0, 0.75);
+	position: relative;
+	transform-style: preserve-3d;
+	transition: transform 0.5s;
 }
 
 #hidden {
 	display: none;
+}
+
+.front-card,
+.back-card {
+	height: 100%;
+	backface-visibility: hidden;
+	
+}
+
+.back-card {
+	transform: rotateY(180deg);
+}
+
+.flipped {
+	transform: rotateY(180deg);
+	transition: transform 0.5s;
 }
 
 .pokemon-card .pokemon {
@@ -24,9 +41,9 @@
 	width: 100%;
 }
 .pokemon-card > .front-card > .pokemon-sprite > img {
-	max-width: 70%;
-	max-height: 70%;
-    opacity: 1;
+	max-width: 60%;
+	max-height: 60%;
+	opacity: 1;
 }
 
 .pokemon-card > .types {
@@ -45,48 +62,50 @@
 .stats {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 0;
-	padding: 0;
 }
+
+.stat {
+	display: flex;
+	margin-bottom: 5px;
+}
+
 dt {
-	position: relative;
-	clear: both;
-	display: block;
 	float: left;
-	width: 104px;
+	width: 75px;
 	height: 20px;
 	line-height: 20px;
-	margin-right: 17px;
-	font-size: .75em;
+	margin-right: 10px;
+	font-size: 0.75em;
 	text-align: right;
 }
-dd {
-	position: relative;
-	display: block;
-	float: left;
-	width: 197px;
-	height: 20px;
-	margin: 0 0 15px;
-	background: transparent;
- }
- * html dd { float: none; }
 
- dd div {
-	position: relative;
+dd {
+	display: flex;
+	align-items: center;
+	width: 197px;
+	height: 17px;
+	background: transparent;
+	margin: 0;
+	border: 2px solid black;
+	border-radius: 5px;
+	margin-top: 3px;
+}
+
+dd .bar {
+	display: flex;
+	align-items: center;
 	background: rgb(209, 0, 0);
-	height: 20px;
+	border-radius: 4px;
+	height: 100%;
 	width: 75%;
-	text-align:right;
- }
- dd div strong {
-	position: absolute;
-	right: -5px;
-	top: -2px;
-	display: block;
+	text-align: right;
+}
+
+dd div strong {
+	margin-left: 3px;
 	background: transparent;
 	height: 24px;
 	width: 9px;
-	text-align: left;
-	text-indent: -9999px;
-	overflow: hidden;
- }
+	font-size: 0.9em;
+	font-weight: 700;
+}

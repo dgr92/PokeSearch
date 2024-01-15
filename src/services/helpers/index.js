@@ -123,7 +123,6 @@ const getPreEvolution = (infoPokemon) => {
 
 // Get Evolution
 const getEvolution = (evolutionData, infoPokemon) => {
-    console.log(infoPokemon.name, evolutionData)
     if (evolutionData.chain.species.name === infoPokemon.name) {
         return evolutionData.chain.evolves_to[0]?.species.name;
     }

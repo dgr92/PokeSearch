@@ -1,4 +1,34 @@
 .gen-list-button {
-    display: flex;
-    gap: 10px;
+	display: flex;
+	border: 1px solid #000;
+	border-radius: 20px;
+	min-width: 20%;
+	position: fixed;
+	top: 150px;
+	left: 30%; transform: translate(-50%, -50%);
+	z-index: 2;
+	width: 800px;
+	background-color: #202020;
+}
+
+.gen-list-button > ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.gen-list-button > p {
+	align-self: center;
+	margin-right: 20px;
+}
+
+.close-button {
+	z-index: 1;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: transparent;
+	cursor: auto;
 }

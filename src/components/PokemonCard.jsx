@@ -25,9 +25,8 @@ export const PokemonCard = ({ pokemonData }) => {
 		setFlipped((flipped) => !flipped);
 	};
 
-	console.log(pokemonData); 																	//TODO: borrar
 	return (
-		<li className='pokemon-card'>
+		<div className={`pokemon-card ${flipped ? 'flipped' : ''}`}>
 			<div className='front-card' id={flipped === true ? 'hidden' : ''} onClick={handleFlip}>
 				<div className='pokemon'>
 					<h2>#{pokemonData.pokemon.number}</h2>
@@ -70,56 +69,56 @@ export const PokemonCard = ({ pokemonData }) => {
 				</div>
 
 				<dl className='stats'>
-					<div>
+					<div className='stat'>
 						<dt>Hp:</dt>
 						<dd>
-							<div style={{ width: `${(pokemonData.stats.hp / 255) * 100}%` }}>
+							<div className='bar' style={{ width: `${(pokemonData.stats.hp / 255) * 100}%` }}>
 								<strong>{pokemonData.stats.hp}</strong>
 							</div>
 						</dd>
 					</div>
-					<div>
+					<div className='stat'>
 						<dt>At:</dt>
 						<dd>
-							<div style={{ width: `${(pokemonData.stats.at / 255) * 100}%` }}>
+							<div className='bar' style={{ width: `${(pokemonData.stats.at / 255) * 100}%` }}>
 								<strong>{pokemonData.stats.at}</strong>
 							</div>
 						</dd>
 					</div>
-					<div>
+					<div className='stat'>
 						<dt>Def:</dt>
 						<dd>
-							<div style={{ width: `${(pokemonData.stats.def / 255) * 100}%` }}>
+							<div className='bar' style={{ width: `${(pokemonData.stats.def / 255) * 100}%` }}>
 								<strong>{pokemonData.stats.def}</strong>
 							</div>
 						</dd>
 					</div>
-					<div>
+					<div className='stat'>
 						<dt>At Esp:</dt>
 						<dd>
-							<div style={{ width: `${(pokemonData.stats.atEsp / 255) * 100}%` }}>
+							<div className='bar' style={{ width: `${(pokemonData.stats.atEsp / 255) * 100}%` }}>
 								<strong>{pokemonData.stats.atEsp}</strong>
 							</div>
 						</dd>
 					</div>
-					<div>
+					<div className='stat'>
 						<dt>Def Esp:</dt>
 						<dd>
-							<div style={{ width: `${(pokemonData.stats.defEsp / 255) * 100}%` }}>
+							<div className='bar' style={{ width: `${(pokemonData.stats.defEsp / 255) * 100}%` }}>
 								<strong>{pokemonData.stats.defEsp}</strong>
 							</div>
 						</dd>
 					</div>
-					<div>
+					<div className='stat'>
 						<dt>Vel:</dt>
 						<dd>
-							<div style={{ width: `${(pokemonData.stats.vel / 255) * 100}%` }}>
+							<div className='bar' style={{ width: `${(pokemonData.stats.vel / 255) * 100}%` }}>
 								<strong>{pokemonData.stats.vel}</strong>
 							</div>
 						</dd>
 					</div>
 				</dl>
 			</div>
-		</li>
+		</div>
 	);
 };
