@@ -1,3 +1,6 @@
+@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+
 #root {
 	max-width: 100vw;
 	margin: auto;
@@ -30,7 +33,6 @@ body {
 	background-size: cover;
 }
 
-
 /************\
 	HEADER
 \************/
@@ -44,9 +46,8 @@ header {
 
 header > div {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	margin: 0 100px;
-
 }
 
 header > div li {
@@ -64,11 +65,11 @@ header > div li {
 }
 
 .search-bar > input {
-	height: 30px;
+	height: 40px;
 	width: 15vw;
 	border-radius: 7px;
+	font-size: 1.2em;
 }
-
 
 /*************\
 	HOMEPAGE
@@ -76,6 +77,8 @@ header > div li {
 
 .home-page {
 	margin-top: 200px;
+	font-family: 'Pokemon Solid', sans-serif;
+	letter-spacing: 0.25em;
 }
 
 h1 {
@@ -87,9 +90,10 @@ li {
 	list-style: none;
 }
 
-a {
+.home-page a {
 	color: #fff;
 	text-decoration: inherit;
+	font-family: sans-serif;
 }
 
 a:hover {
@@ -98,12 +102,12 @@ a:hover {
 
 button {
 	border-radius: 8px;
-	border: 1px solid transparent;
+	border: transparent;
 	padding: 0.6em 1.2em;
 	font-size: 1em;
 	font-weight: 500;
 	font-family: inherit;
-	background-color: #1a1a1a;
+	background-color: transparent;
 	cursor: pointer;
 	transition: border-color 0.25s;
 }
@@ -111,7 +115,6 @@ button {
 .hidden {
 	display: none;
 }
-
 
 /************\
 	FOOTER

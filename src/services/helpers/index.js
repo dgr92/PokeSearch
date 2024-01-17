@@ -39,11 +39,10 @@ export const getPokemonInfo = async (pokemon) => {
             evolution: evolution,
             category: category,
         };
-
         return pokemonData;
 
     } catch (e) {
-        console.log(e.message);
+        console.log(e);
     }
 };
 
@@ -55,11 +54,15 @@ const getNameAndNumber = (infoPokemon) => {
     }
 }
 
-// Get sprites
+// Get sprites, if there are not "official-artwork" sprite, brings game sprite instead.
 const getSprites = (spriteTypeStatsData) => {
-    const normalSprite = spriteTypeStatsData.sprites.other["official-artwork"].front_default;
-    const shinySprite = spriteTypeStatsData.sprites.other["official-artwork"].front_shiny;
+    const normalSprite = (spriteTypeStatsData.sprites.other["official-artwork"].front_default)
+        ? spriteTypeStatsData.sprites.other["official-artwork"].front_default
+        : spriteTypeStatsData.sprites.other["home"].front_default;
 
+    const shinySprite = (spriteTypeStatsData.sprites.other["official-artwork"].front_shiny)
+        ? spriteTypeStatsData.sprites.other["official-artwork"].front_shiny
+        : spriteTypeStatsData.sprites.other["home"].front_shiny;
     return {
         normalSprite: normalSprite,
         shinySprite: shinySprite
@@ -78,12 +81,94 @@ const getTypes = (spriteTypeStatsData) => {
 
 // Get pokemon description
 const getPokemonDescription = (infoPokemon) => {
-    for (let i = 0; i < infoPokemon.genera.length; i++) {
-        const language = infoPokemon.genera[i].language.name === 'es';
+    // If there aren't any description for a pokemon
+    if (infoPokemon.genera.length === 0) {
+        const noDescription = 'No hay descripción para este pokémon';
+        return noDescription;
+    }
 
-        if (language) {
+    for (let i = 0; i < infoPokemon.genera.length; i++) {
+        if (infoPokemon.genera[i].language.name === 'es') {
+            return infoPokemon.genera[i].genus
+        } else if (infoPokemon.genera[i].language.name === 'en') {
             return infoPokemon.genera[i].genus
         }
+    }
+}
+
+// Get pokedex description
+const getPokedexDescription = (infoPokemon) => {
+    // If there aren't any pokedex description for any pokemon
+    if (infoPokemon.flavor_text_entries.length === 0) {
+        const noDescription = 'No hay descripción de pokédex para este pokémon';
+        return noDescription;
+    }
+
+    for (let i = 0; i < infoPokemon.flavor_text_entries.length; i++) {
+        let language = infoPokemon.flavor_text_entries[i].language.name === 'es';
+        let game;
+
+        // Tries with pokemon x description
+        if (infoPokemon.flavor_text_entries[i].version.name === 'x') {
+            game = infoPokemon.flavor_text_entries[i].version.name === 'x';
+        }
+
+        // If there arent, tries with pokemon sword
+        if (infoPokemon.flavor_text_entries[i].version.name === 'sword') {
+            game = infoPokemon.flavor_text_entries[i].version.name === 'sword';
+        }
+
+        // If there arent, tries with pokemon scarlet, and if there arent in spanish, then catch the enlish one
+        if (infoPokemon.flavor_text_entries[i].version.name === 'scarlet') {
+            if (infoPokemon.flavor_text_entries[i].language.name === 'es') {
+                language = language = infoPokemon.flavor_text_entries[i].language.name === 'es';
+            } else {
+                language = infoPokemon.flavor_text_entries[i].language.name === 'en';
+            }
+            game = infoPokemon.flavor_text_entries[i].version.name === 'scarlet';
+        }
+
+        // If there arent, tries with pokemon legends-arceus, and if there arent in spanish, then catch the enlish one
+        if (infoPokemon.flavor_text_entries[i].version.name === 'legends-arceus') {
+            if (infoPokemon.flavor_text_entries[i].language.name === 'es') {
+                language = language = infoPokemon.flavor_text_entries[i].language.name === 'es';
+            } else {
+                language = infoPokemon.flavor_text_entries[i].language.name === 'en';
+            }
+            game = infoPokemon.flavor_text_entries[i].version.name === 'legends-arceus';
+        }
+
+        if (language && game) {
+            return infoPokemon.flavor_text_entries[i].flavor_text;
+        }
+    }
+}
+
+// Get pre-evolution:
+const getPreEvolution = (infoPokemon) => {
+    if (infoPokemon.evolves_from_species) {
+        return infoPokemon.evolves_from_species.name;
+    }
+}
+
+// Get Evolution
+const getEvolution = (evolutionData, infoPokemon) => {
+    // If its first evolution
+    if (evolutionData.chain.species.name === infoPokemon.name) {
+        const evolution = {
+            ev1: evolutionData.chain.evolves_to[0]?.species.name,
+            ev2: evolutionData.chain.evolves_to[1]?.species.name,
+        };
+        return evolution
+    }
+
+    // If isn't first evolution
+    if (evolutionData.chain.evolves_to[0]?.species.name === infoPokemon.name) {
+        const evolution = {
+            ev1: evolutionData.chain.evolves_to[0]?.evolves_to[0]?.species.name,
+            ev2: evolutionData.chain.evolves_to[0]?.evolves_to[1]?.species.name,
+        };
+        return evolution
     }
 }
 
@@ -98,38 +183,6 @@ const getPokemonStats = (spriteTypeStatsData) => {
         vel: spriteTypeStatsData.stats[5].base_stat,
     }
     return pokemonStats;
-}
-
-// Get pokedex description
-const getPokedexDescription = (infoPokemon) => {
-    for (let i = 0; i < infoPokemon.flavor_text_entries.length; i++) {
-        const language = infoPokemon.flavor_text_entries[i].language.name === 'es';
-        const game = infoPokemon.flavor_text_entries[i].version.name === 'x';
-
-        if (language && game) {
-            return infoPokemon.flavor_text_entries[i].flavor_text;
-        }
-    }
-}
-
-// Get pre-evolution:
-const getPreEvolution = (infoPokemon) => {
-    if (infoPokemon.evolves_from_species) {
-        return infoPokemon.evolves_from_species.name;
-    } else {
-        return null;
-    }
-}
-
-// Get Evolution
-const getEvolution = (evolutionData, infoPokemon) => {
-    if (evolutionData.chain.species.name === infoPokemon.name) {
-        return evolutionData.chain.evolves_to[0]?.species.name;
-    }
-    if (evolutionData.chain.evolves_to[0]?.species.name === infoPokemon.name) {
-        return evolutionData.chain.evolves_to[0]?.evolves_to[0]?.species.name;
-    }
-
 }
 
 // Get legendary or mythical

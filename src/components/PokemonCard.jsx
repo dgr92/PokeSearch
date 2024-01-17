@@ -14,110 +14,161 @@ export const PokemonCard = ({ pokemonData }) => {
 		}
 		if (imageStyle === 'shinySprite') {
 			setPokemonImage(<img src={pokemonData.sprites.shinySprite} alt={`Imagen de ${pokemonData.pokemon.name} shiny.`} />);
-
-			setTimeout(() => {
-				setPokemonImage(<img src={pokemonData.sprites.normalSprite} alt={`Imagen de ${pokemonData.pokemon.name}.`} />);
-			}, 10000);
 		}
 	};
 
 	const handleFlip = () => {
-		setFlipped((flipped) => !flipped);
+		setFlipped(!flipped);
+	};
+
+	const backgroundTypeImage = `src/resources/images-background-types/${pokemonData.types.type1}-bg.jpg`;
+
+	const backgroundFrontCard = {
+		background: `no-repeat url(${backgroundTypeImage})`,
+		backgroundPosition: 'center',
+		backgroundSize: 'cover',
+		height: '70%',
+		borderRadius: '20px 20px 0 0',
+	};
+
+	const backgroundBackCard = {
+		background: `no-repeat url(${backgroundTypeImage})`,
+		backgroundPosition: 'center',
+		backgroundSize: 'cover',
+		height: '45%',
+		borderRadius: '20px 20px 0 0',
 	};
 
 	return (
-		<div className={`pokemon-card ${flipped ? 'flipped' : ''}`}>
-			<div className='front-card' id={flipped === true ? 'hidden' : ''} onClick={handleFlip}>
-				<div className='pokemon'>
-					<h2>#{pokemonData.pokemon.number}</h2>
-					<h2>{pokemonData.pokemon.name.charAt(0).toUpperCase() + pokemonData.pokemon.name.slice(1)}</h2>
+		<div className={`pokemon-card ${flipped ? 'flipped' : ''}`} onClick={handleFlip}>
+			{/* Front Card */}
+			<div className={`front-card ${flipped ? 'hidden' : ''}`}>
+				<div className='background' style={backgroundFrontCard}>
+					<h2 className='pokemon-number'>#{pokemonData.pokemon.number}</h2>
+
+					<div className='pokemon-sprite'>{pokemonImage}</div>
+
+					<h2 className='pokemon-name'>{pokemonData.pokemon.name.charAt(0).toUpperCase() + pokemonData.pokemon.name.slice(1)}</h2>
+
+					<div className='types'>
+						<img src={`src/resources/images-pokemon-types/${pokemonData.types.type1}.png`} alt='Tipo principal' />
+						{pokemonData.types.type2 ? (
+							<img src={`src/resources/images-pokemon-types/${pokemonData.types.type2}.png`} alt='Tipo secundario' />
+						) : null}
+					</div>
+
+					<div className='sprite-buttons'>
+						<button onMouseOver={() => handleHover('normalSprite')}>Normal</button>
+						<button onMouseOver={() => handleHover('shinySprite')}>Shiny</button>
+					</div>
 				</div>
 
-				<div className='pokemon-sprite'>{pokemonImage}</div>
-
-				<div className='types'>
-					<img src={`src/resources/images-pokemon-types/${pokemonData.types.type1}.png`} alt='Tipo principal' />
-					{pokemonData.types.type2 ? (
-						<img src={`src/resources/images-pokemon-types/${pokemonData.types.type2}.png`} alt='Tipo secundario' />
-					) : null}
-				</div>
-
-				<div className='sprite-buttons'>
-					<button onMouseOver={() => handleHover('normalSprite')}>Normal</button>
-					<button onMouseOver={() => handleHover('shinySprite')}>Shiny</button>
-				</div>
-
-				<div>
+				<div className='pokemon-description'>
 					<h3>{pokemonData.pokedex_description}</h3>
-					<h3>{pokemonData.description}</h3>
+					<p>{pokemonData.description}</p>
 				</div>
 			</div>
 
-			<div className='back-card' id={flipped === true ? '' : 'hidden'} onClick={handleFlip}>
-				<div className='pokemon'>
-					<h2>#{pokemonData.pokemon.number}</h2>
-					<h2>{pokemonData.pokemon.name.charAt(0).toUpperCase() + pokemonData.pokemon.name.slice(1)}</h2>{' '}
+			{/* Back Card */}
+			<div className={`back-card ${flipped ? '' : 'hidden'}`}>
+				<div className='background' style={backgroundBackCard}>
+					<h2 className='pokemon-number'>#{pokemonData.pokemon.number}</h2>
+
+					<div className='pokemon-sprite'>{pokemonImage}</div>
 				</div>
 
-				<div className='evolutions'>
-					{pokemonData.pre_evolution ? (
-						<h3>Pre Evolución: {pokemonData.pre_evolution.charAt(0).toUpperCase() + pokemonData.pre_evolution.slice(1)}</h3>
-					) : null}
-					{pokemonData.evolution ? (
-						<h3>Evolución: {pokemonData.evolution.charAt(0).toUpperCase() + pokemonData.evolution.slice(1)}</h3>
-					) : null}
+				<h2 className='pokemon-name'>{pokemonData.pokemon.name.charAt(0).toUpperCase() + pokemonData.pokemon.name.slice(1)}</h2>
+
+				<div className={`category ${flipped ? '' : 'hidden'}`}>
+					{pokemonData.category.isLegendary ? <img src='src/resources/images-category/legendary.png' alt='Img Legendario' /> : null}
+					{pokemonData.category.isMythical ? <img src='src/resources/images-category/mythical.png' alt='Img Mítico' /> : null}
 				</div>
 
-				<dl className='stats'>
-					<div className='stat'>
-						<dt>Hp:</dt>
-						<dd>
-							<div className='bar' style={{ width: `${(pokemonData.stats.hp / 255) * 100}%` }}>
-								<strong>{pokemonData.stats.hp}</strong>
+				<div className='evo-and-stats'>
+					<div className='evolutions'>
+						{pokemonData.pre_evolution ? (
+							<div>
+								<h4>Pre-evo.:</h4>
+								<h4>{pokemonData.pre_evolution.charAt(0).toUpperCase() + pokemonData.pre_evolution.slice(1)}</h4>
 							</div>
-						</dd>
-					</div>
-					<div className='stat'>
-						<dt>At:</dt>
-						<dd>
-							<div className='bar' style={{ width: `${(pokemonData.stats.at / 255) * 100}%` }}>
-								<strong>{pokemonData.stats.at}</strong>
+						) : (
+							<div>
+								<h4>Pre-evo.:</h4>
+								<h4>No</h4>
 							</div>
-						</dd>
-					</div>
-					<div className='stat'>
-						<dt>Def:</dt>
-						<dd>
-							<div className='bar' style={{ width: `${(pokemonData.stats.def / 255) * 100}%` }}>
-								<strong>{pokemonData.stats.def}</strong>
+						)}
+
+						{pokemonData.evolution?.ev1 ? (
+							<div>
+								<h4>Evolución:</h4>
+								<h4>{pokemonData.evolution?.ev1.charAt(0).toUpperCase() + pokemonData.evolution?.ev1.slice(1)}</h4>
 							</div>
-						</dd>
-					</div>
-					<div className='stat'>
-						<dt>At Esp:</dt>
-						<dd>
-							<div className='bar' style={{ width: `${(pokemonData.stats.atEsp / 255) * 100}%` }}>
-								<strong>{pokemonData.stats.atEsp}</strong>
+						) : (
+							<div>
+								<h4>Evolución:</h4>
+								<h4>No</h4>
 							</div>
-						</dd>
-					</div>
-					<div className='stat'>
-						<dt>Def Esp:</dt>
-						<dd>
-							<div className='bar' style={{ width: `${(pokemonData.stats.defEsp / 255) * 100}%` }}>
-								<strong>{pokemonData.stats.defEsp}</strong>
+						)}
+
+						{pokemonData.evolution?.ev2 ? (
+							<div>
+								<h4>Evolución:</h4>
+								<h4>{pokemonData.evolution?.ev2.charAt(0).toUpperCase() + pokemonData.evolution?.ev2.slice(1)}</h4>
 							</div>
-						</dd>
+						) : null}
 					</div>
-					<div className='stat'>
-						<dt>Vel:</dt>
-						<dd>
-							<div className='bar' style={{ width: `${(pokemonData.stats.vel / 255) * 100}%` }}>
-								<strong>{pokemonData.stats.vel}</strong>
-							</div>
-						</dd>
-					</div>
-				</dl>
+
+					<dl className='stats'>
+						<div className='stat'>
+							<dt>Hp:</dt>
+							<dd>
+								<div className='bar' style={{ width: `${(pokemonData.stats.hp / 255) * 100}%` }}>
+									<strong>{pokemonData.stats.hp}</strong>
+								</div>
+							</dd>
+						</div>
+						<div className='stat'>
+							<dt>At:</dt>
+							<dd>
+								<div className='bar' style={{ width: `${(pokemonData.stats.at / 255) * 100}%` }}>
+									<strong>{pokemonData.stats.at}</strong>
+								</div>
+							</dd>
+						</div>
+						<div className='stat'>
+							<dt>Def:</dt>
+							<dd>
+								<div className='bar' style={{ width: `${(pokemonData.stats.def / 255) * 100}%` }}>
+									<strong>{pokemonData.stats.def}</strong>
+								</div>
+							</dd>
+						</div>
+						<div className='stat'>
+							<dt>At Esp:</dt>
+							<dd>
+								<div className='bar' style={{ width: `${(pokemonData.stats.atEsp / 255) * 100}%` }}>
+									<strong>{pokemonData.stats.atEsp}</strong>
+								</div>
+							</dd>
+						</div>
+						<div className='stat'>
+							<dt>Def Esp:</dt>
+							<dd>
+								<div className='bar' style={{ width: `${(pokemonData.stats.defEsp / 255) * 100}%` }}>
+									<strong>{pokemonData.stats.defEsp}</strong>
+								</div>
+							</dd>
+						</div>
+						<div className='stat'>
+							<dt>Vel:</dt>
+							<dd>
+								<div className='bar' style={{ width: `${(pokemonData.stats.vel / 255) * 100}%` }}>
+									<strong>{pokemonData.stats.vel}</strong>
+								</div>
+							</dd>
+						</div>
+					</dl>
+				</div>
 			</div>
 		</div>
 	);

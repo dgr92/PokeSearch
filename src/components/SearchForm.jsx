@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { PokemonContext } from '../context/PokemonContext';
 
 export const SearchForm = () => {
-	const { pokemonDataList, searchResults, setSearchResults } = useContext(PokemonContext);
+	const { pokemonDataList, setSearchResults } = useContext(PokemonContext);
 
 	const handleSearchPokemon = (e) => {
 		const searchFor = e.target.value;

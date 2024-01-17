@@ -4,7 +4,7 @@ import { getPokemonInfo } from '../services/helpers';
 
 import { PokemonCard } from './PokemonCard';
 
-import '../styles/pokemonList.css'
+import '../styles/pokemonList.css';
 
 // Listado de todos los pokémon de una generación
 export const PokemonList = () => {
@@ -29,28 +29,23 @@ export const PokemonList = () => {
 		return numA - numB;
 	});
 
-
-	
 	return (
 		<ul className='pokemon-list'>
-			{searchResults.length 
-			? 
-				searchResults.map((pokemonData) => {
-					return (
-						<li key={pokemonData.pokemon.name}>
-							<PokemonCard pokemonData={pokemonData} />
-						</li>
-					);
-				})
-			:
-				pokemonDataList.map((pokemonData) => {
-					return (
-						<li key={pokemonData.pokemon.name}>
-							<PokemonCard pokemonData={pokemonData} />
-						</li>
-					);
-				})
-		}
+			{searchResults.length
+				? searchResults.map((pokemonData) => {
+						return (
+							<li key={pokemonData.pokemon.name}>
+								<PokemonCard pokemonData={pokemonData} />
+							</li>
+						);
+				  })
+				: pokemonDataList.map((pokemonData) => {
+						return (
+							<li key={pokemonData.pokemon?.name}>
+								<PokemonCard pokemonData={pokemonData} />
+							</li>
+						);
+				  })}
 		</ul>
 	);
 };
