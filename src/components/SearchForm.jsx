@@ -7,8 +7,11 @@ export const SearchForm = () => {
 
 	const handleSearchPokemon = (e) => {
 		const searchFor = e.target.value;
-		const results = pokemonDataList.filter((pokemonData) => pokemonData.pokemon.name.toLowerCase().indexOf(searchFor.toLowerCase()) > -1);
-        setSearchResults(results);
+		if(pokemonDataList.length){
+			const results = pokemonDataList.filter((pokemonData) => pokemonData.pokemon.name.toLowerCase().indexOf(searchFor.toLowerCase()) > -1);
+			setSearchResults(results);
+		}
+		
     };
 
 	return (

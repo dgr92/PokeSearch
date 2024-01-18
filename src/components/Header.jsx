@@ -4,13 +4,27 @@ import { Link } from 'react-router-dom';
 import { PokemonContext } from '../context/PokemonContext';
 import { SearchForm } from './SearchForm';
 
+import '../styles/header.css';
+
 export const Header = ({ setHideGens }) => {
 	const [error, setError] = useState('');
-	const { setPokemonActualGen, setNumOfGenerations, setsearchResults } = useContext(PokemonContext);
+	const {
+		pokemonDataList,
+		flipAllCards,
+		colorPatternAll,
+		setInitialBriefing,
+		setLoadingGens,
+		setPokemonActualGen,
+		setNumOfGenerations,
+		setsearchResults,
+		setFlipAllCards,
+		setColorPatternAll,
+	} = useContext(PokemonContext);
 
 	// Fetch a la API al pulsar el botón que despliega el listado de generaciones pokémont
 	const handleGens = async () => {
 		setHideGens(false);
+		setLoadingGens(true);
 		try {
 			const numOfGens = await fetch('https://pokeapi.co/api/v2/generation/')
 				.then((responseGens) => responseGens.json())
@@ -18,32 +32,71 @@ export const Header = ({ setHideGens }) => {
 					return dataGens.results;
 				});
 			setNumOfGenerations(numOfGens);
+			setLoadingGens(false);
 		} catch (e) {
 			setError(e.message);
 			console.error(error);
 		}
 	};
 
+	// Flip all cards at once
+	const handleFlipAll = () => {
+		setFlipAllCards(!flipAllCards);
+	};
+
+	// Change color pattern
+	const handleNormalPatternAll = () => {
+		setColorPatternAll('normalSprite');
+	};
+
+	const handleShinyPatternAll = () => {
+		setColorPatternAll('shinySprite');
+	};
+
 	// Eliminamos los pokemon del contexto si volvemos a la pagina principal
 	const handleHomeButton = () => {
+		setInitialBriefing(true)
 		setPokemonActualGen([]);
 		setNumOfGenerations([]);
-		setsearchResults([])
+		setsearchResults([]);
 	};
 
 	return (
 		<header>
-			<div>
+			<>
 				<div className='header-buttons'>
-					<button className='home-button'>
+					<button className='home-button' title='Home'>
 						<Link to='/' onClick={handleHomeButton}>
-							Inicio
+							<img src='src/resources/icons/home-icon.svg' alt='botón home' />
 						</Link>
 					</button>
-					<button onClick={handleGens}>Buscar Generación</button>
+					<button className='search-generation-button' title='Buscar generación' onClick={handleGens}>
+						<img src='src/resources/icons/search-icon.svg' alt='botón buscar' />
+						<span>Buscar Generación</span>
+					</button>
 				</div>
-				{<SearchForm />}
-			</div>
+				{pokemonDataList.length ? (
+					<div className='pokemon-buttons-and-search'>
+						{<SearchForm />}
+						<div className='pokemon-buttons'>
+							<button title='Voltear todas las cartas' onClick={handleFlipAll}>
+								Voltear todas
+							</button>
+							<div className='change-color-button'>
+								{colorPatternAll === 'normalSprite' ? (
+									<button  className='change-color' title='Ver todos los pokémon en color shiny' onClick={handleShinyPatternAll}>
+										Cambiar a shiny
+									</button>
+								) : (
+									<button className='change-color' title='Ver todos los pokémon en color normal' onClick={handleNormalPatternAll}>
+										Cambiar a normal
+									</button>
+								)}
+							</div>
+						</div>
+					</div>
+				) : null}
+			</>
 		</header>
 	);
 };

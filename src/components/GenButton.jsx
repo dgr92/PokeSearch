@@ -4,13 +4,18 @@ import { PokemonContext } from '../context/PokemonContext';
 // Boton de cada una de las generaciones
 export const GenButton = ({ gen, genNum, setHideGens }) => {
 	const [error, setError] = useState('');
-	const { setPokemonActualGen, setNumOfGenerations, setSearchResults } = useContext(PokemonContext);
+	const { setInitialBriefing, setLoadingPkmn, setPokemonActualGen, setNumOfGenerations, setSearchResults, setFlipAllCards, setColorPatternAll } =
+		useContext(PokemonContext);
 
 	// Fetch que trae todos los pokémon de esa generación
 	const handleSearchGenInfo = async () => {
+		setInitialBriefing(false)
+		setLoadingPkmn(true);
 		setPokemonActualGen([]);
-		setSearchResults([])
-		setHideGens(true)
+		setSearchResults([]);
+		setHideGens(true);
+		setFlipAllCards(false);
+		setColorPatternAll('normalSprite');
 		try {
 			const genData = await fetch(gen.url)
 				.then((response) => response.json())

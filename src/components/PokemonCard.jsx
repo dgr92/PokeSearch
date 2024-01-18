@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { PokemonContext } from '../context/PokemonContext';
+
 import '../styles/pokemonCard.css';
 
 // Cada pokémon individual del listado
@@ -7,6 +9,26 @@ export const PokemonCard = ({ pokemonData }) => {
 	const [pokemonImage, setPokemonImage] = useState(
 		<img src={pokemonData.sprites.normalSprite} alt={`Imagen de ${pokemonData.pokemon.name}.`} />
 	);
+	const { flipAllCards, colorPatternAll } = useContext(PokemonContext);
+
+	// Flipp all cards at once
+	useEffect(() => {
+		if (flipAllCards) {
+			setFlipped(true);
+		} else {
+			setFlipped(false);
+		}
+	}, [flipAllCards]);
+
+	// Change all colors at once
+	useEffect(() => {
+		if (colorPatternAll === 'normalSprite') {
+			setPokemonImage(<img src={pokemonData.sprites.normalSprite} alt={`Imagen de ${pokemonData.pokemon.name}.`} />);
+		}
+		if (colorPatternAll === 'shinySprite') {
+			setPokemonImage(<img src={pokemonData.sprites.shinySprite} alt={`Imagen de ${pokemonData.pokemon.name} shiny.`} />);
+		}
+	}, [colorPatternAll]);
 
 	const handleHover = (imageStyle) => {
 		if (imageStyle === 'normalSprite') {
@@ -35,14 +57,14 @@ export const PokemonCard = ({ pokemonData }) => {
 		background: `no-repeat url(${backgroundTypeImage})`,
 		backgroundPosition: 'center',
 		backgroundSize: 'cover',
-		height: '45%',
+		height: '50%',
 		borderRadius: '20px 20px 0 0',
 	};
 
 	return (
 		<div className={`pokemon-card ${flipped ? 'flipped' : ''}`} onClick={handleFlip}>
 			{/* Front Card */}
-			<div className={`front-card ${flipped ? 'hidden' : ''}`}>
+			<div className='card-face front'>
 				<div className='background' style={backgroundFrontCard}>
 					<h2 className='pokemon-number'>#{pokemonData.pokemon.number}</h2>
 
@@ -70,7 +92,7 @@ export const PokemonCard = ({ pokemonData }) => {
 			</div>
 
 			{/* Back Card */}
-			<div className={`back-card ${flipped ? '' : 'hidden'}`}>
+			<div className='card-face back'>
 				<div className='background' style={backgroundBackCard}>
 					<h2 className='pokemon-number'>#{pokemonData.pokemon.number}</h2>
 

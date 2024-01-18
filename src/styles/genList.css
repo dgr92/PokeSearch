@@ -1,5 +1,6 @@
-.gen-list-button {
+.gen-list {
 	display: flex;
+	position: relative;
 	border: 1px solid #000;
 	border-radius: 20px;
 	min-width: 20%;
@@ -11,13 +12,13 @@
 	background-color: #202020;
 }
 
-.gen-list-button > ul {
+.gen-list > ul {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
 }
 
-.gen-list-button > p {
+.gen-list > p {
 	align-self: center;
 	margin-right: 20px;
 }

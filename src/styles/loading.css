@@ -1,0 +1,13 @@
+.loading-pokemon.list {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	margin: auto;
+}
+
+.loading-pokemon-list > img {
+	max-width: 150px;
+	max-height: 150px;
+	margin-bottom: 20vh;
+	display: block;
+}
