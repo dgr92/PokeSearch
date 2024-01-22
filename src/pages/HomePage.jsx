@@ -6,9 +6,9 @@ export const HomePage = () => {
 		<>
 			<div className='home-page'>
 				<h1>Bienvenidx a PokeSearch</h1>
-				<button className='main-button'>
-					<Link to='/app'>Entrar</Link>
-				</button>
+				<Link className='main-button' to='/app'>
+					<p>Entrar</p>
+				</Link>
 			</div>
 			<Footer />
 		</>

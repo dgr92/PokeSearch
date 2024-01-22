@@ -5,8 +5,7 @@ footer {
 	align-self: center;
 	position: absolute;
 	bottom: 0;
-	filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.8));
-
+	filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 1));
 }
 
 footer > div {
@@ -17,7 +16,7 @@ footer > div {
 }
 
 footer > div > img {
-	width: 80px;
+	width: 60px;
 }
 
 footer > a {
@@ -28,9 +27,19 @@ footer > a {
 	align-self: center;
 }
 
+.footer-text {
+	margin-left: 20px;
+	justify-content: start;
+	width: 20%;
+	align-items: center;
+}
+
+.react-logo {
+	width: 40px;
+}
+
 footer > .github-link {
 	position: absolute;
-	left: 50%;
-	right: 50%;
-
+	right: 45vw;
+	left: 45vw;
 }

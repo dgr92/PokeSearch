@@ -1,0 +1,33 @@
+.pointing-arrow {
+	width: 75px;
+	position: absolute;
+	top: 60px;
+	left: 330px;
+	animation: arrow 1s ease-in-out infinite;
+	filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.8));
+}
+
+.briefing {
+	position: absolute;
+	top: 50vh;
+	transform: translateY(-50%);
+	margin: 0;
+	font-size: 1.4em;
+	filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.8));
+}
+
+.flecha {
+	animation: arrow 1s ease-out infinite !important;
+}
+
+@keyframes arrow {
+	0% {
+		transform: translate(0px, 30px);
+	}
+	50% {
+		transform: translate(0px, 60px);
+	}
+	100% {
+		transform: translate(0px, 30px);
+	}
+}

@@ -13,10 +13,10 @@ export const Header = ({ setHideGens }) => {
 		flipAllCards,
 		colorPatternAll,
 		setInitialBriefing,
-		setLoadingGens,
+		setPokemonDataList,
 		setPokemonActualGen,
 		setNumOfGenerations,
-		setsearchResults,
+		setSearchResults,
 		setFlipAllCards,
 		setColorPatternAll,
 	} = useContext(PokemonContext);
@@ -24,7 +24,6 @@ export const Header = ({ setHideGens }) => {
 	// Fetch a la API al pulsar el botón que despliega el listado de generaciones pokémont
 	const handleGens = async () => {
 		setHideGens(false);
-		setLoadingGens(true);
 		try {
 			const numOfGens = await fetch('https://pokeapi.co/api/v2/generation/')
 				.then((responseGens) => responseGens.json())
@@ -32,7 +31,6 @@ export const Header = ({ setHideGens }) => {
 					return dataGens.results;
 				});
 			setNumOfGenerations(numOfGens);
-			setLoadingGens(false);
 		} catch (e) {
 			setError(e.message);
 			console.error(error);
@@ -55,10 +53,11 @@ export const Header = ({ setHideGens }) => {
 
 	// Eliminamos los pokemon del contexto si volvemos a la pagina principal
 	const handleHomeButton = () => {
-		setInitialBriefing(true)
+		setInitialBriefing(true);
+		setPokemonDataList([]);
 		setPokemonActualGen([]);
 		setNumOfGenerations([]);
-		setsearchResults([]);
+		setSearchResults([]);
 	};
 
 	return (
@@ -84,7 +83,7 @@ export const Header = ({ setHideGens }) => {
 							</button>
 							<div className='change-color-button'>
 								{colorPatternAll === 'normalSprite' ? (
-									<button  className='change-color' title='Ver todos los pokémon en color shiny' onClick={handleShinyPatternAll}>
+									<button className='change-color' title='Ver todos los pokémon en color shiny' onClick={handleShinyPatternAll}>
 										Cambiar a shiny
 									</button>
 								) : (

@@ -8,7 +8,6 @@ export const PokemonProviderComponent = ({ children }) => {
 	const [pokemonActualGen, setPokemonActualGen] = useState([]);
 	const [pokemonDataList, setPokemonDataList] = useState([]);
 	const [searchResults, setSearchResults] = useState([]);
-	const [loadingGens, setLoadingGens] = useState(false);
 	const [loadingPkmn, setLoadingPkmn] = useState(false);
 	const [flipAllCards, setFlipAllCards] = useState(false);
 	const [colorPatternAll, setColorPatternAll] = useState('normalSprite');
@@ -26,8 +25,6 @@ export const PokemonProviderComponent = ({ children }) => {
 				setPokemonDataList,
 				searchResults,
 				setSearchResults,
-				loadingGens,
-				setLoadingGens,
 				loadingPkmn,
 				setLoadingPkmn,
 				flipAllCards,

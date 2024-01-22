@@ -1,0 +1,44 @@
+.changelog {
+	margin-left: 50px;
+	text-align: left;
+	filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.8));
+}
+
+.changelog .version {
+	margin-left: 50px;
+	font-weight: 700;
+}
+
+.changelog .version .version-specs {
+	margin-left: 25px;
+	width: 50%;
+}
+
+.back-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 40px;
+	right: 50px;
+	text-decoration: none;
+	width: 80px;
+	height: 30px;
+	color: #fff;
+	padding: 5px 10px 10px;
+	font-weight: bold;
+	border-radius: 15px;
+	background: #000000a9;
+	transition: all 0.3s ease;
+	filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.055));
+}
+
+.back-button:hover {
+	background: #fff;
+	color: #495057;
+}
+
+.back-button:active {
+	background: #ffffff62;
+	color: #495057;
+}

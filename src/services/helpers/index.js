@@ -48,9 +48,16 @@ export const getPokemonInfo = async (pokemon) => {
 
 // Get name and number
 const getNameAndNumber = (infoPokemon) => {
-    return {
-        name: infoPokemon.name,
-        number: infoPokemon.id,
+    let name;
+    for (let i = 0; i != infoPokemon.names.length; i++) {
+        if (infoPokemon.names[i].language.name === 'es') {
+            name = infoPokemon.names[i].name;
+
+            return {
+                name: name,
+                number: infoPokemon.id,
+            }
+        }
     }
 }
 

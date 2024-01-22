@@ -4,9 +4,8 @@ header {
 	padding: 15px 0;
 	height: 4vh;
 	background-color: #242424;
-	border-bottom: 1px solid #000;
 	box-shadow: 10px 10px 29px 5px rgba(0, 0, 0, 0.5);
-	z-index: 2;
+	z-index: 3;
 	position: sticky;
 	top: 0;
 }
@@ -21,9 +20,18 @@ header > div li {
 	width: 90px;
 }
 
+header button {
+	min-height: 100%;
+}
+
+header button:hover {
+	filter: drop-shadow(1px 1px 10px rgba(241, 241, 241, 0.8));
+}
+
 .header-buttons {
 	display: flex;
 	gap: 50px;
+	min-height: 100%;
 	align-items: center;
 	position: relative;
 	left: 1%;
@@ -56,7 +64,8 @@ header > div li {
 }
 
 .change-color {
-width: 170px;}
+	width: 170px;
+}
 
 .search-bar {
 	position: relative;
@@ -71,5 +80,11 @@ width: 170px;}
 	border-radius: 15px;
 	font-size: 1.2em;
 	border: none;
+	background-color: #ffffff;
+	color: #000;
 	box-shadow: inset 1px 1px 10px rgba(0, 0, 0, 0.8);
+}
+
+.search-bar > input:focus {
+	outline: none;
 }

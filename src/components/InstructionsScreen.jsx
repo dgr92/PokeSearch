@@ -1,3 +1,5 @@
+import  '../styles/instructionsScreen.css'
+
 export const InstructionsScreen = () => {
 	return (
 		<>

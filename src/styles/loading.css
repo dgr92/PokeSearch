@@ -1,4 +1,4 @@
-.loading-pokemon.list {
+.loading-pokemon.list, .loading-gen-list {
 	display: flex;
 	text-align: center;
 	justify-content: center;
@@ -8,6 +8,5 @@
 .loading-pokemon-list > img {
 	max-width: 150px;
 	max-height: 150px;
-	margin-bottom: 20vh;
-	display: block;
+	margin-bottom: 5vh;
 }

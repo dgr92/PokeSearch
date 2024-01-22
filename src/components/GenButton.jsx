@@ -1,15 +1,24 @@
 import { useState, useContext } from 'react';
 import { PokemonContext } from '../context/PokemonContext';
 
+import '../styles/genButton.css';
+
 // Boton de cada una de las generaciones
 export const GenButton = ({ gen, genNum, setHideGens }) => {
 	const [error, setError] = useState('');
-	const { setInitialBriefing, setLoadingPkmn, setPokemonActualGen, setNumOfGenerations, setSearchResults, setFlipAllCards, setColorPatternAll } =
-		useContext(PokemonContext);
+	const {
+		setInitialBriefing,
+		setLoadingPkmn,
+		setPokemonActualGen,
+		setNumOfGenerations,
+		setSearchResults,
+		setFlipAllCards,
+		setColorPatternAll,
+	} = useContext(PokemonContext);
 
 	// Fetch que trae todos los pokémon de esa generación
 	const handleSearchGenInfo = async () => {
-		setInitialBriefing(false)
+		setInitialBriefing(false);
 		setLoadingPkmn(true);
 		setPokemonActualGen([]);
 		setSearchResults([]);
@@ -34,7 +43,7 @@ export const GenButton = ({ gen, genNum, setHideGens }) => {
 
 	return (
 		<div className='gen-button'>
-			<button onClick={handleSearchGenInfo}>{`${genNum}ª Gen`}</button>
+			<button onClick={handleSearchGenInfo}>{`${genNum}ª Generación`}</button>
 		</div>
 	);
 };
