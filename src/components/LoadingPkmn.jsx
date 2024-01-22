@@ -2,7 +2,7 @@
 export const LoadingPkmn = () => {
 	return (
 		<div className='loading-pokemon-list'>
-			<img src='src/resources/mew-loading.gif' alt='imagen de carga' />
+			<img src='/resources/mew-loading.gif' alt='imagen de carga' />
 		</div>
 	);
 };

@@ -43,7 +43,7 @@ export const PokemonCard = ({ pokemonData }) => {
 		setFlipped(!flipped);
 	};
 
-	const backgroundTypeImage = `src/resources/images-background-types/${pokemonData.types.type1}-bg.jpg`;
+	const backgroundTypeImage = `../resources/images-background-types/${pokemonData.types.type1}-bg.jpg`;
 
 	const backgroundFrontCard = {
 		background: `no-repeat url(${backgroundTypeImage})`,
@@ -73,9 +73,9 @@ export const PokemonCard = ({ pokemonData }) => {
 					<h2 className='pokemon-name'>{pokemonData.pokemon.name.charAt(0).toUpperCase() + pokemonData.pokemon.name.slice(1)}</h2>
 
 					<div className='types'>
-						<img src={`src/resources/images-pokemon-types/${pokemonData.types.type1}.png`} alt='Tipo principal' />
+						<img src={`/resources/images-pokemon-types/${pokemonData.types.type1}.png`} alt='Tipo principal' />
 						{pokemonData.types.type2 ? (
-							<img src={`src/resources/images-pokemon-types/${pokemonData.types.type2}.png`} alt='Tipo secundario' />
+							<img src={`/resources/images-pokemon-types/${pokemonData.types.type2}.png`} alt='Tipo secundario' />
 						) : null}
 					</div>
 
@@ -102,8 +102,8 @@ export const PokemonCard = ({ pokemonData }) => {
 				<h2 className='pokemon-name'>{pokemonData.pokemon.name.charAt(0).toUpperCase() + pokemonData.pokemon.name.slice(1)}</h2>
 
 				<div className={`category ${flipped ? '' : 'hidden'}`}>
-					{pokemonData.category.isLegendary ? <img src='src/resources/images-category/legendary.png' alt='Img Legendario' /> : null}
-					{pokemonData.category.isMythical ? <img src='src/resources/images-category/mythical.png' alt='Img Mítico' /> : null}
+					{pokemonData.category.isLegendary ? <img src='/resources/images-category/legendary.png' alt='Img Legendario' /> : null}
+					{pokemonData.category.isMythical ? <img src='/resources/images-category/mythical.png' alt='Img Mítico' /> : null}
 				</div>
 
 				<div className='evo-and-stats'>

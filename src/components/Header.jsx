@@ -66,11 +66,11 @@ export const Header = ({ setHideGens }) => {
 				<div className='header-buttons'>
 					<button className='home-button' title='Home'>
 						<Link to='/' onClick={handleHomeButton}>
-							<img src='src/resources/icons/home-icon.svg' alt='botón home' />
+							<img src='/resources/icons/home-icon.svg' alt='botón home' />
 						</Link>
 					</button>
 					<button className='search-generation-button' title='Buscar generación' onClick={handleGens}>
-						<img src='src/resources/icons/search-icon.svg' alt='botón buscar' />
+						<img src='/resources/icons/search-icon.svg' alt='botón buscar' />
 						<span>Buscar Generación</span>
 					</button>
 				</div>
