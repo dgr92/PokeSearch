@@ -3,7 +3,7 @@ import { PokemonContext } from '../context/PokemonContext';
 
 import '../styles/pokemonCard.css';
 
-// Cada pokémon individual del listado
+// Each individual pokemon from the list
 export const PokemonCard = ({ pokemonData }) => {
 	const [flipped, setFlipped] = useState(false);
 	const [pokemonImage, setPokemonImage] = useState(
@@ -11,7 +11,7 @@ export const PokemonCard = ({ pokemonData }) => {
 	);
 	const { flipAllCards, colorPatternAll } = useContext(PokemonContext);
 
-	// Flipp all cards at once
+	// Flip all cards at once
 	useEffect(() => {
 		if (flipAllCards) {
 			setFlipped(true);

@@ -27,9 +27,18 @@
 	}
 }
 
+@keyframes slideFromBot {
+	0% {
+		bottom: -200px;
+	}
+
+	100% {
+		bottom: 0;
+	}
+}
+
 .gen-list > ul {
 	filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
-
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -45,6 +54,8 @@
 	filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
 	align-self: center;
 	margin: 0 0 20px 0;
+	font-weight: 700;
+	text-decoration: underline;
 }
 
 .close-button {
@@ -56,4 +67,45 @@
 	height: 100vh;
 	background-color: transparent;
 	cursor: auto;
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+	.gen-list {
+		top: unset;
+		bottom: 0;
+		height: 35vh;
+		width: 100%;
+		flex-direction: column;
+		animation: slideFromBot 0.2s ease-in-out;
+	}
+	.gen-list ul {
+		margin: 0 100px;
+		flex-direction: row;
+		justify-content: center;
+		font-size: 1.2em;
+	}
+
+	.gen-list > p {
+		font-size: 1.8em;
+		margin-bottom: 40px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.gen-list {
+		top: unset;
+		bottom: 0;
+		height: 53vh;
+		width: 100%;
+		flex-direction: column;
+		animation: slideFromBot 0.2s ease-in-out;
+	}
+	.gen-list ul {
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	.gen-list > p {
+		font-size: 1.4em;
+	}
 }

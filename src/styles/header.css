@@ -1,13 +1,15 @@
 header {
 	display: flex;
 	justify-content: space-between;
+	width: 100%;
 	padding: 15px 0;
 	height: 4vh;
 	background-color: #242424;
 	box-shadow: 10px 10px 29px 5px rgba(0, 0, 0, 0.5);
-	z-index: 3;
-	position: sticky;
+	position: fixed;
 	top: 0;
+	z-index: 3;
+	overflow: hidden;
 }
 
 header > div {
@@ -87,4 +89,107 @@ header button:hover {
 
 .search-bar > input:focus {
 	outline: none;
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+	header {
+		position: fixed;
+		top: unset;
+		bottom: 0;
+		width: 100%;
+		justify-content: flex-start;
+	}
+
+	header button:hover {
+		filter: drop-shadow(1px 1px 10px rgba(241, 241, 241, 0.8));
+	}
+
+	.header-buttons {
+		margin: 0;
+		gap: 5px;
+	}
+
+	.search {
+		display: none;
+	}
+
+	.pokemon-buttons-and-search {
+		justify-content: space-between;
+		margin: 0;
+		align-self: center;
+	}
+
+	.pokemon-buttons {
+		display: flex;
+		justify-content: spac;
+		gap: 0px;
+	}
+
+	.pokemon-buttons button {
+		width: 120px;
+	}
+
+	.search-bar > input {
+		margin-left: 25px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	header {
+		position: fixed;
+		top: unset;
+		bottom: 0;
+		width: 100%;
+		justify-content: flex-start;
+	}
+
+	.search {
+		display: none;
+	}
+
+	.header-buttons {
+		min-height: 100%;
+		margin: 0 25px;
+		gap: 25px;
+		left: 0;
+	}
+
+	.home-button {
+		align-self: center;
+		padding: 0;
+	}
+
+	.search-generation-button {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		font-size: 1.2em;
+		padding: 0;
+	}
+
+	.pokemon-buttons-and-search {
+		justify-content: flex-start;
+		margin: 0;
+	}
+
+	.pokemon-buttons {
+		gap: 0;
+		padding: 0;
+		font-size: 0.8em;
+		margin-left: -5px;
+		width: 150px;
+	}
+
+	.change-color-button > .change-color {
+		padding: 0;
+		margin-left: -10px;
+		width: 75px;
+	}
+
+	.search-bar > input {
+		margin: auto;
+		height: 35px;
+		width: 120px;
+		font-size: 1em;
+	}
 }

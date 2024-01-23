@@ -16,10 +16,6 @@
 	filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.8));
 }
 
-.flecha {
-	animation: arrow 1s ease-out infinite !important;
-}
-
 @keyframes arrow {
 	0% {
 		transform: translate(0px, 30px);
@@ -29,5 +25,41 @@
 	}
 	100% {
 		transform: translate(0px, 30px);
+	}
+}
+
+@keyframes arrowRotate {
+	0% {
+		transform: rotate(180deg) translate(0px, 30px);
+	}
+	50% {
+		transform: rotate(180deg) translate(0px, 60px);
+	}
+	100% {
+		transform: rotate(180deg) translate(0px, 30px);
+	}
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+	.pointing-arrow {
+		top: unset;
+		left: 75px;
+		bottom: 60px;
+		animation: arrowRotate 1s ease-in-out infinite;
+	}
+
+	.briefing {
+		top: 49vh;
+		font-size: 2em;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.pointing-arrow {
+		width: 50px;
+		top: unset;
+		left: 60px;
+		bottom: 40px;
+		animation: arrowRotate 1s ease-in-out infinite;
 	}
 }

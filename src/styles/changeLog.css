@@ -42,3 +42,32 @@
 	background: #ffffff62;
 	color: #495057;
 }
+
+
+@media only screen and (max-width: 600px) {
+	.changelog {
+		margin: 0 2px 20px;
+	}
+	
+	.changelog .version {
+		margin-left: 20px;
+		font-weight: 700;
+	}
+	
+	.changelog .version .version-specs {
+		margin-left: 25px;
+		width: 80%;
+		text-align: justify;
+		color: #f5f5f5;
+	}
+	
+	.back-button {
+		position: sticky;
+		top: unset;
+		right: 50%;
+		left: 50%;
+		bottom: 1vh;
+		transform: translateX(-50%);
+	}
+
+}

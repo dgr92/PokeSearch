@@ -7,7 +7,7 @@ import { LoadingPkmn } from './LoadingPkmn';
 
 import '../styles/pokemonList.css';
 
-// Listado de todos los pokémon de una generación
+// List of all pokemon from a generation
 export const PokemonList = () => {
 	const { pokemonActualGen, pokemonDataList, setPokemonDataList, searchResults, loadingPkmn, setLoadingPkmn } = useContext(PokemonContext);
 

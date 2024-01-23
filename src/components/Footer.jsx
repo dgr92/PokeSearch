@@ -6,7 +6,7 @@ export const Footer = () => {
 	return (
 		<footer>
 			<div className='footer-text'>
-				<p>Desarrollado con</p>
+				<p className='developed'>Desarrollado con</p>
 				<img src='/resources/pokeapi-logo.svg' alt='PokeAPI logo' />
 				<p>y</p>
 				<img className='react-logo' src='/resources/react-logo.png' alt='ReactJS logo' />

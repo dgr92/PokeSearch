@@ -3,7 +3,7 @@ import { PokemonContext } from '../context/PokemonContext';
 
 import '../styles/genButton.css';
 
-// Boton de cada una de las generaciones
+// Button for each generation
 export const GenButton = ({ gen, genNum, setHideGens }) => {
 	const [error, setError] = useState('');
 	const {
@@ -16,7 +16,7 @@ export const GenButton = ({ gen, genNum, setHideGens }) => {
 		setColorPatternAll,
 	} = useContext(PokemonContext);
 
-	// Fetch que trae todos los pokémon de esa generación
+	// Fetch which brings all the pokemon of the generation
 	const handleSearchGenInfo = async () => {
 		setInitialBriefing(false);
 		setLoadingPkmn(true);

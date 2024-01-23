@@ -7,3 +7,20 @@
 	margin: 85px auto;
 	padding: 0;
 }
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+	.pokemon-list {
+		gap: 30px;
+		width: 100vw;
+		padding: 0;
+		margin: 25px auto 100px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.pokemon-list {
+		gap: 30px;
+		width: 100vw;
+		margin: 25px auto 90px;
+	}
+}

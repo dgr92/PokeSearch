@@ -12,7 +12,7 @@ export const PokeApp = () => {
 	const [hideGens, setHideGens] = useState(true);
 	const { initialBriefing, numOfGenerations, setNumOfGenerations } = useContext(PokemonContext);
 
-	// Cerrar desplegable de generaciones
+	// Close generation list
 	const closeGenMenu = () => {
 		setHideGens(true);
 		setNumOfGenerations([]);

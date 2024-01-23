@@ -21,7 +21,7 @@ export const Header = ({ setHideGens }) => {
 		setColorPatternAll,
 	} = useContext(PokemonContext);
 
-	// Fetch a la API al pulsar el botón que despliega el listado de generaciones pokémont
+	// Fetch which brings all the generations
 	const handleGens = async () => {
 		setHideGens(false);
 		try {
@@ -51,7 +51,7 @@ export const Header = ({ setHideGens }) => {
 		setColorPatternAll('shinySprite');
 	};
 
-	// Eliminamos los pokemon del contexto si volvemos a la pagina principal
+	// Deletes all pokemon from context if we return to home page
 	const handleHomeButton = () => {
 		setInitialBriefing(true);
 		setPokemonDataList([]);
@@ -71,7 +71,7 @@ export const Header = ({ setHideGens }) => {
 					</button>
 					<button className='search-generation-button' title='Buscar generación' onClick={handleGens}>
 						<img src='/resources/icons/search-icon.svg' alt='botón buscar' />
-						<span>Buscar Generación</span>
+						<span className='search'>Buscar Generación</span>
 					</button>
 				</div>
 				{pokemonDataList.length ? (
