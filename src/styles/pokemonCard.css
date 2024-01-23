@@ -87,10 +87,12 @@
 	gap: 10px;
 	width: 100%;
 }
+
 .sprite-buttons > button {
 	padding: 2px;
 	margin: 0 15px;
 	filter: drop-shadow(3px 3px 4px rgba(0, 0, 0, 0.8));
+	color: #fff;
 }
 
 .pokemon-description {

@@ -45,6 +45,7 @@ header button:hover {
 
 .search-generation-button {
 	display: flex;
+	color: #fff;
 	gap: 10px;
 	align-items: center;
 	font-size: 1.2em;
@@ -63,6 +64,10 @@ header button:hover {
 	align-items: center;
 	position: relative;
 	right: -2vw;
+}
+
+.pokemon-buttons button {
+	color: #fff;
 }
 
 .change-color {

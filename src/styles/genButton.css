@@ -1,3 +1,6 @@
+.gen-button button {
+	color: #fff;
+}
 .gen-button button:hover {
 	filter: drop-shadow(1px 1px 10px rgba(241, 241, 241, 0.8));
 }
