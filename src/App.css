@@ -29,6 +29,7 @@ body {
 	background: fixed url(/resources/bg-pokesearch.jpg);
 	background-size: cover;
 	background-position: center;
+	color: #fff;
 }
 
 main {
@@ -184,7 +185,6 @@ button {
 	}
 }
 
-
 @media only screen and (max-width: 600px) {
 	html,
 	body {
@@ -234,6 +234,4 @@ button {
 		background: #ffffff62;
 		color: #495057;
 	}
-
-
 }
