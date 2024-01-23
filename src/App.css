@@ -120,7 +120,7 @@ button {
 	body {
 		height: 100vh;
 		max-width: 100vw;
-		background: fixed url(public/resources/bg-pokesearch-mobile.jpg);
+		background: fixed url(/resources/bg-pokesearch-mobile.jpg);
 		background-size: cover;
 		background-position: center;
 	}
@@ -190,7 +190,7 @@ button {
 	body {
 		height: 100vh;
 		max-width: 100vw;
-		background: fixed url(public/resources/bg-pokesearch-mobile.jpg);
+		background: fixed url(/resources/bg-pokesearch-mobile.jpg);
 		background-size: cover;
 		background-position: center;
 	}
