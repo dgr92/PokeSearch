@@ -1,7 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { PokemonContext } from '../context/PokemonContext';
 import { getPokemonInfo } from '../services/helpers';
-
 import { PokemonCard } from './PokemonCard';
 import { LoadingPkmn } from './LoadingPkmn';
 
