@@ -1,112 +1,112 @@
 .gen-list {
-	display: flex;
-	flex-direction: column;
-	min-width: 10%;
-	position: fixed;
-	height: 95vh;
-	width: 200px;
-	top: 5vh;
-	left: 0;
-	z-index: 2;
-	background-color: #242424ee;
-	padding-top: 40px;
-	box-shadow: 10px 10px 29px 5px rgba(0, 0, 0, 0.5);
-	animation: slideFromLeft 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  min-width: 10%;
+  position: fixed;
+  height: 95vh;
+  width: 200px;
+  top: 5vh;
+  left: 0;
+  z-index: 2;
+  background-color: #242424ee;
+  padding-top: 40px;
+  box-shadow: 10px 10px 29px 5px rgba(0, 0, 0, 0.5);
+  animation: slideFromLeft 0.2s ease-in-out;
 }
 
 .gen-list .hidden {
-	animation: reverse;
+  animation: reverse;
 }
 
 @keyframes slideFromLeft {
-	0% {
-		left: -200px;
-	}
+  0% {
+    left: -200px;
+  }
 
-	100% {
-		left: 0;
-	}
+  100% {
+    left: 0;
+  }
 }
 
 @keyframes slideFromBot {
-	0% {
-		bottom: -200px;
-	}
+  0% {
+    bottom: -200px;
+  }
 
-	100% {
-		bottom: 0;
-	}
+  100% {
+    bottom: 0;
+  }
 }
 
 .gen-list > ul {
-	filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	gap: 20px;
-	padding: 0;
+  filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
 }
 
 .gen-list .gen-button:hover {
-	filter: drop-shadow(5px 5px 2px #ffffff2c);
+  filter: drop-shadow(5px 5px 2px #ffffff2c);
 }
 
 .gen-list > p {
-	filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
-	align-self: center;
-	margin: 0 0 20px 0;
-	font-weight: 700;
-	text-decoration: underline;
+  filter: drop-shadow(3px 3px 5px rgb(0, 0, 0));
+  align-self: center;
+  margin: 0 0 20px 0;
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 .close-button {
-	z-index: 1;
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100vw;
-	height: 100vh;
-	background-color: transparent;
-	cursor: auto;
+  z-index: 1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  cursor: auto;
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
-	.gen-list {
-		top: unset;
-		bottom: 0;
-		height: 35vh;
-		width: 100%;
-		flex-direction: column;
-		animation: slideFromBot 0.2s ease-in-out;
-	}
-	.gen-list ul {
-		margin: 0 100px;
-		flex-direction: row;
-		justify-content: center;
-		font-size: 1.2em;
-	}
+  .gen-list {
+    top: unset;
+    bottom: 0;
+    height: 35vh;
+    width: 100%;
+    flex-direction: column;
+    animation: slideFromBot 0.2s ease-in-out;
+  }
+  .gen-list ul {
+    margin: 0 100px;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 1.2em;
+  }
 
-	.gen-list > p {
-		font-size: 1.8em;
-		margin-bottom: 40px;
-	}
+  .gen-list > p {
+    font-size: 1.8em;
+    margin-bottom: 40px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
-	.gen-list {
-		top: unset;
-		bottom: 0;
-		height: 53vh;
-		width: 100%;
-		flex-direction: column;
-		animation: slideFromBot 0.2s ease-in-out;
-	}
-	.gen-list ul {
-		flex-direction: row;
-		justify-content: center;
-	}
+  .gen-list {
+    top: unset;
+    bottom: 0;
+    height: 53vh;
+    width: 100%;
+    flex-direction: column;
+    animation: slideFromBot 0.2s ease-in-out;
+  }
+  .gen-list ul {
+    flex-direction: row;
+    justify-content: center;
+  }
 
-	.gen-list > p {
-		font-size: 1.4em;
-	}
+  .gen-list > p {
+    font-size: 1.4em;
+  }
 }

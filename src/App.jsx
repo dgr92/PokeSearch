@@ -6,15 +6,15 @@ import { ChangeLog } from './pages/ChangeLog';
 import './App.css';
 
 function App() {
-	return (
-		<div>
-			<Routes>
-				<Route path='/' element={<HomePage />} />
-				<Route path='/app' element={<PokeApp />} />
-				<Route path='/changelog' element={<ChangeLog />} />
-			</Routes>
-		</div>
-	);
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/app" element={<PokeApp />} />
+        <Route path="/changelog" element={<ChangeLog />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
