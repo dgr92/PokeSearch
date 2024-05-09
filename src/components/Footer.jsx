@@ -19,7 +19,7 @@ export const Footer = () => {
       >
         <img src="/resources/icons/github-icon.svg" alt="Enlace a GitHub" />
       </a>
-      <Link to="/changelog">v1.0</Link>
+      <Link to="/changelog">v1.0.1</Link>
     </footer>
   );
 };
